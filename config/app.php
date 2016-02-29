@@ -167,6 +167,9 @@ return [
          */
         Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
 
+        //Socialite
+        Laravel\Socialite\SocialiteServiceProvider::class,
+
     ],
 
     /*
@@ -222,6 +225,9 @@ return [
          * Acacha AdminLTE template alias
          */
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
+
+        //Socialite
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
