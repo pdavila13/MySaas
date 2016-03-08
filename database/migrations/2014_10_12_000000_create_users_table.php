@@ -12,12 +12,28 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('users', function ($table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
+            $table->timestamps();
+
+            $table->string('stripe_id')->nullable();
+            $table->string('card_brand')->nullable();
+            $table->string('card_last_four')->nullable();
+        });
+
+        Schema::create('subscriptions', function ($table) {
+            $table->increments('id');
+            $table->integer('user_id');
+            $table->string('name');
+            $table->string('stripe_id');
+            $table->string('stripe_plan');
+            $table->integer('quantity');
+            $table->timestamp('trial_ends_at')->nullable();
+            $table->timestamp('ends_at')->nullable();
             $table->timestamps();
         });
     }

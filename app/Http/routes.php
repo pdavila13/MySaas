@@ -29,7 +29,12 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
 
     //Socials Login
-    Route::get('auth/{provider}', 'Auth\AuthController@redirectToAuthenticationServiceProvider');
-    Route::get('auth/{provider}/callback', 'Auth\AuthController@handleAuthenticationServiceProviderCallback');
+    Route::get('auth/{provider}', 'Auth\SocialAuthController@redirectToAuthenticationServiceProvider');
+    Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleAuthenticationServiceProviderCallback');
 
+    Route::get('plans', 'PlansController@index');
+    Route::get('register_subscription', function(){
+        return view('auth.register_subscription');
+    });
+    Route::get('subscription_payment','SubscriptionController@subscribe');
 });

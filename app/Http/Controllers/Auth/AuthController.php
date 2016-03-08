@@ -39,8 +39,7 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
@@ -50,8 +49,7 @@ class AuthController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    protected function validator(array $data) {
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
@@ -65,37 +63,11 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
-    {
+    protected function create(array $data) {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
-    }
-
-    public function redirectToAuthenticationServiceProvider($provider) {
-        return Socialite::driver($provider)->redirect();
-
-    }
-
-    public function handleAuthenticationServiceProviderCallback($provider) {
-        try {
-            $user = Socialite::driver($provider)->user();
-        } catch (Exception $e) {
-            return Redirect::to('auth/' . $provider);
-        }
-
-        //dd($user);
-
-        $authUser = $this->findOrCreateUser($user, $provider);
-
-        Auth::login($authUser, true);
-
-        return Redirect::to('home');
-    }
-
-    public function findOrCreateUser() {
-
     }
 }
