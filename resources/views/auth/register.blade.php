@@ -10,6 +10,7 @@
     <div class="register-box">
         <div class="register-logo">
             <a href="{{ url('/home') }}"><b>Admin</b>LTE</a>
+            Plan: Free
         </div>
 
         @if (count($errors) > 0)
@@ -23,10 +24,9 @@
             </div>
         @endif
 
-        @include('auth.partials.register')
-    </div><!-- /.register-box -->
+        @include('auth.partials.register',['url' => 'register'])
 
-    @include('layouts.partials.scripts_auth')
+    </div><!-- /.register-box -->
 
     <script>
         $(function () {
@@ -37,6 +37,6 @@
             });
         });
     </script>
-</body>
+    </body>
 
 @endsection

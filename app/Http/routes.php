@@ -33,8 +33,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleAuthenticationServiceProviderCallback');
 
     Route::get('plans', 'PlansController@index');
-    Route::get('register_subscription', function(){
+    Route::get('register_subscription', function() {
         return view('auth.register_subscription');
     });
-    Route::get('subscription_payment','SubscriptionController@subscribe');
+    Route::post('registerAndSubscribeToStripe', 'Auth\AuthController@registerAndSubscribeToStripe');
 });
