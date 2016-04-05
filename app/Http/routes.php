@@ -37,4 +37,7 @@ Route::group(['middleware' => ['web']], function () {
         return view('auth.register_subscription');
     });
     Route::post('registerAndSubscribeToStripe', 'Auth\AuthController@registerAndSubscribeToStripe');
+
+    Route::get('downloadInvoice', 'PDFController@downloadInvoice');
+    Route::get('invoiceHtml', 'PDFController@invoiceHtml');
 });
