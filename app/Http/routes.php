@@ -28,6 +28,17 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
 
+    Route::resource('users','UsersController');
+    
+    Event::listen('user.change',function() {
+       Cache::forget('query.users');
+    });
+
+//    Route::get('users','UsersController@index');
+//    Route::post('users','UsersController@store');
+//    Route::put('users','UsersController@update');
+//    Route::delete('users','UsersController@destroy');
+
     //Socials Login
     Route::get('auth/{provider}', 'Auth\SocialAuthController@redirectToAuthenticationServiceProvider');
     Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleAuthenticationServiceProviderCallback');
