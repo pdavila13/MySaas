@@ -21,7 +21,7 @@ class UsersController extends Controller {
     public function index() {
 
         //$user = Cache::remember('users',10, function(){
-        $user = Cache::remember('users',10, function(){
+        $user = Cache::remember('query.users', 10, function(){
             return User::all();
         });
 
