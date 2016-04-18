@@ -29,15 +29,7 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
 
     Route::resource('users','UsersController');
-    
-    Event::listen('user.change',function() {
-       Cache::forget('query.users');
-    });
-
-//    Route::get('users','UsersController@index');
-//    Route::post('users','UsersController@store');
-//    Route::put('users','UsersController@update');
-//    Route::delete('users','UsersController@destroy');
+    Route::get('profile', 'ProfileController@show');
 
     //Socials Login
     Route::get('auth/{provider}', 'Auth\SocialAuthController@redirectToAuthenticationServiceProvider');
@@ -49,6 +41,8 @@ Route::group(['middleware' => ['web']], function () {
     });
     Route::post('registerAndSubscribeToStripe', 'Auth\AuthController@registerAndSubscribeToStripe');
 
+    //Invoices
     Route::get('downloadInvoice', 'PDFController@downloadInvoice');
     Route::get('invoiceHtml', 'PDFController@invoiceHtml');
+    Route::get('invoiceGenerator', 'PDFController@invoiceGenerator');
 });
