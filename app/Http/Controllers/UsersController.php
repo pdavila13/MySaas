@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserHasChanged;
 use App\User;
 use Cache;
 use Event;
@@ -34,7 +35,8 @@ class UsersController extends Controller {
             'email'=>'pepito@pepitos.com'
         ]);
 
-        Event::fire('user.change');
+        //Event::fire('user.change');
+        $this->fireUserHasChanged();
     }
 
     public function update() {
@@ -43,12 +45,18 @@ class UsersController extends Controller {
         $user->name="Pepita";
         $user->save();
 
-        Event::fire('user.change');
+        //Event::fire('user.change');
+        $this->fireUserHasChanged();
     }
 
     public function destroy($id) {
         User::destroy($id);
 
-        Event::fire('user.change');
+        //Event::fire('user.change');
+        $this->fireUserHasChanged();
+    }
+
+    public function fireUserHasChanged(){
+        Event::fire(new UserHasChanged());
     }
 }
