@@ -79,4 +79,9 @@ class PDFController extends Controller {
 
         return $data;
     }
+
+    public function invoiceGenerator() {
+        return view('invoiceGenerator');
+    }
+
 }

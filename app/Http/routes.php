@@ -31,6 +31,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('users','UsersController');
     Route::get('profile', 'ProfileController@show');
 
+    Route::get('shotout','ShotOutController@shotout');
+
     //Socials Login
     Route::get('auth/{provider}', 'Auth\SocialAuthController@redirectToAuthenticationServiceProvider');
     Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleAuthenticationServiceProviderCallback');

@@ -42,6 +42,16 @@
                     <li><a href="#">Link in level 2</a></li>
                 </ul>
             </li>
+
+            <li class="treeview">
+                <a href="#"><i class='fa fa-link'></i> <span>Facturas</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ url('invoiceHtml') }}">Mostrar factura</a></li>
+                    <li><a href="{{ url('download_invoice') }}">Descargar factura</a></li>
+                    <li><a href="{{ url('invoiceGenerator') }}">Generar factura</a></li>
+                </ul>
+            </li>
+            <li><a href="{{ url('shotout') }}"><i class='fa fa-link'></i> <span>Shotout</span></a></li>
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
